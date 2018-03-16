@@ -3,7 +3,7 @@ import { userActions } from "./userActions.jsx";
 import { alertActions } from "../_actions/alertActions.jsx";
 
 export const userManager = {
-    login, logout, register
+    login, logout, register, getProfileData
 }
 
 function login(username, password) {
@@ -51,3 +51,23 @@ function register(userRegister) {
                     );
     }
 }
+
+function getProfileData() {
+    return dispatch => {
+        dispatch(userActions.getProfileDataRequest());
+
+        userService.getProfileData()
+                    .then(
+                        success => {
+                            console.log("Data has taken successfully!");
+                            dispatch(userActions.getProfileDataSuccess(success));
+                            dispatch(alertActions.success("FETCHED DATA SUCCESSFUL!"));
+                        },
+                        error => {
+                            dispatch(userActions.getProfileDataFailure(error));
+                            dispatch(alertActions.error(error));
+                        }
+                    );
+    }
+}
+

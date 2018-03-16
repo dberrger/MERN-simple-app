@@ -26,11 +26,14 @@ render() {
         <div>
             <Header/>
             <div> 
-                <Route  path="/" exact component={Home} />             
+                <Route path="/" exact component={Home} />             
                 <Route path="/register" exact component={_components.Register} />
                 <Route path="/login" component={_components.Login} />
-                <Route path="/cabinet" component={_components.Cabinet} />
+                <Route path="/cabinet" component={ () =>(localStorage.getItem('user') 
+                                                            ?  <_components.Cabinet/> 
+                                                            : <div>Unautorised</div>) } />
                 <Route path="/home" component={_components.Home} />
+               
             </div>
         </div>
     );

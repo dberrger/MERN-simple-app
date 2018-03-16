@@ -46,16 +46,11 @@ export function initBackend() {
                 if (url.match(/history$/) && options.method === 'GET') {
                     // getHistory(options);
                     let token = options.headers.Authorization;
-                    var decoded = jwt.verify(token, 'shhhhh');
-                    console.log(decoded);
+                    let validUser = checkToken(token);
                     
-                    let filteredUsers = usersDB.filter(user => {
-                        return user.username === decoded.username && user.password === decoded.password;
-                    });
-                    console.log(filteredUsers);
-                    if (options.headers && filteredUsers) {                
+                    if (options.headers && validUser[0]) {                
                         // respond 200 OK with user
-                        resolve({ ok: true, data: () => filteredUsers.history });
+                        resolve({ ok: true, data: () => validUser.history });
                         return;
                     }
                     reject('401 - Unauthorised');
@@ -87,32 +82,49 @@ export function initBackend() {
                     return;
                 }
 
+
+                // if(url.match(/\/booking$/) && options.method === 'GET') {
+
+                //     let token = options.headers.Authorization;
+                //     let validUser = checkToken(token);
+
+                //     if(options.headers && validUser[0]) {
+                //         epmtyBookings = epmtyBookings();
+                        
+
+                //     }
+
+                // }
+                
+                if(url.match(/\/profile$/) && options.method === 'GET') {
+
+                    let token = options.headers.Authorization;
+                    let validUser = checkToken(token);
+
+                    if(options.headers && validUser[0]) {
+                        resolve({ ok: true, data: ()=>(validUser[0])}); 
+                        return;                    
+                    }
+                    reject("Something going wrong");
+                }
+
+
                 // add booking
                 if (url.match(/\/add$/) && options.method === 'POST') {
 
                     let token = options.headers.Authorization;
-                    var decoded = jwt.verify(token, 'shhhhh');
-                    console.log(decoded);
-                    
-                    var filteredUser = usersDB.filter(user => {
-                        return user.username === decoded.username && user.password === decoded.password;
-                    });
-                    console.log(filteredUser[0]);
-                    if (options.headers && filteredUser[0]) {                
-                        
+                    let validUser = checkToken(token);
+
+                    if (options.headers && validUser[0]) {                
                         let newBooking = JSON.parse(options.body);
-                            newBooking.id = filteredUser[0].history.length ? Math.max(...filteredUser.history.map(booking => booking.id)) + 1 : 1;
-                        usersDB.forEach(user => {
-                            if(user.id === filteredUser[0].id) {    
-                                 user.history.push(newBooking);
-                            }
-                        localStorage.setItem("usersDB", JSON.stringify(usersDB));
-                        });
-                        resolve({ ok: true, data: () => filteredUsers.history });
+                        bookingIsAvaliable(newBooking.date) 
+                                ? addBookingToHistory(newBooking)
+                                : reject("")
+                        
+                        resolve({ ok: true, data: () => validUser.history });
                         return;
                     }
                     reject('401 - Unauthorised');
-                    return;
                 }
 
                 /**Delete booking */
@@ -167,4 +179,26 @@ function authenticate(authUser) {
     //match check
    
 
+}
+
+function checkToken(token) {
+    
+    let decoded = jwt.verify(token, 'shhhhh');
+    
+    let filteredUser = usersDB.filter(user => {
+        return user.username === decoded.username && user.password === decoded.password;
+    });
+
+    return filteredUser;
+}
+
+function addBookingToHistory(newBooking) {
+    
+    newBooking.id = validUser[0].history.length ? Math.max(...validUser.history.map(booking => booking.id)) + 1 : 1;
+    usersDB.forEach(user => {
+        if(user.id === validUser[0].id) {    
+                user.history.push(newBooking);
+        }
+    localStorage.setItem("usersDB", JSON.stringify(usersDB));
+    });
 }

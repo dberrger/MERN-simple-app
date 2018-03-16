@@ -1,9 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import { rootReducer } from '../_reducers/root-reducer.jsx';
+import { profileReducer } from '../_reducers/profileReducer.jsx';
 import { routerReducer } from "react-router-redux";
-import { combineReducers } from 'redux'
-
+import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
 const logger = createLogger();
 //TODO CONSTRUNCTRION FOR OBJ
@@ -22,6 +23,9 @@ const initStore = {
 export const store = createStore(
     combineReducers({
     routing: routerReducer,
-    rootReducer}), {}   ,
+    profileReducer,
+    rootReducer,
+    form: formReducer
+    }), {}   ,
     applyMiddleware(logger)
 );

@@ -5,7 +5,8 @@ export const userActions  = {
     loginRequest, loginSuccess, loginFailure,
     getRequest, getSuccess, getFailure,
     addRequest, addSuccess, addFailure,
-    deleteRequest, deleteSuccess, deleteFailure
+    deleteRequest, deleteSuccess, deleteFailure,
+    getProfileDataRequest, getProfileDataSuccess, getProfileDataFailure
 }
 
 /** register */
@@ -86,3 +87,14 @@ function logOut(user) {
 
 
 
+function getProfileDataRequest() {
+    return { type: userConstants.GET_USER_PROFILE_DATA_REQUEST }
+}
+
+function getProfileDataSuccess(userData) {
+    return { type: userConstants.GET_USER_PROFILE_DATA_SUCCESS, userProfileData: userData }
+}
+
+function getProfileDataFailure(message) {
+    return { type: userConstants.GET_USER_PROFILE_DATA_FAILURE, error: message }
+}

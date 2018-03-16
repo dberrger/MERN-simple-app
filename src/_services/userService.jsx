@@ -1,8 +1,9 @@
-import { authHeader } from "./authHeader.jsx";
+import authHeader from "./authHeader.jsx";
 
 export const userService = {
     login, register, logout,
-    getHistory, addBooking, deleteBooking
+    getHistory, addBooking, deleteBooking,
+    getProfileData
 }
 
 function login(username, password) {
@@ -41,7 +42,7 @@ function logout() {
 function getHistory() {
   const  requestOptions = {
       method: 'GET',
-      headers: authHeader(),
+      headers: authHeader()
     }
     return fetch('/history', requestOptions)
             .then(response => { response.ok ? response.data() : response })
@@ -70,3 +71,12 @@ function deleteBooking(id) {
             .catch(err => { console.log(`unexpected error GETHISTORY : ${err}`) })
 }
 
+
+function getProfileData() {
+    const  requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    }
+    return fetch('/profile', requestOptions)
+            .then(response => { return response.ok ? Promise.resolve(response.data()) : Promise.reject(response) });
+}

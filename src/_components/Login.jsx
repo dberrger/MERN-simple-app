@@ -41,7 +41,10 @@ class Login extends React.Component {
         // const { loggingIn } = this.props;
          const { username, password, submitted } = this.state;
         return (
-            <div>
+            <div class="modal video-modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModal2">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div id="small-dialog2" class="mfp-hide book-form">
                 <h2>Login</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
@@ -65,9 +68,13 @@ class Login extends React.Component {
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+</div>
         );
     }
 }
+
 
 function mapStateToProps(state) {
     const { loggingIn } = state.authentication;

@@ -1,11 +1,21 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { PrivateRoute } from "./PrivateRoute/PrivateRoute.jsx";
+import Calendar from "./Calendar.jsx";
 
 class Header extends React.Component {
-    state = {  }
+    constructor(props){
+      super(props);
+
+    }
+
+
+
     render() {
         return (
             <header >
+              {/* <PrivateRoute/> */}
+              <Calendar/>
             <div className="top-header" id="home">
               <div className="container">
                 <div className="col-md-8 col-sm-8 col-xs-8 top-left">
