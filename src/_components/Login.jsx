@@ -9,7 +9,7 @@ class Login extends React.Component {
         super(props);
 
         // reset login status
-    //    userManager.logout();
+        //userManager.logout();
 
         this.state = {
             username: '',

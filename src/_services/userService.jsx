@@ -49,15 +49,15 @@ function getHistory() {
             .catch(err => { console.log(`unexpected error GETHISTORY : ${err}`) })
 }
 
-function addBooking(booking) {
+function addBooking(data) {
    const  requestOptions = {
        method: 'POST',
        headers: authHeader(),
-       body : JSON.stringify(booking)
+       body : JSON.stringify(data)
    }
+   debugger;
    return fetch('/add', requestOptions)
-            .then(response => { response.ok ? response.data() : response })
-            .catch(err => { console.log(`unexpected error GETHISTORY : ${err}`) })
+            .then(response => { return response.ok ? Promise.resolve(response.data()) : Promise.reject(response) })
 }
 
 function deleteBooking(id) {

@@ -3,7 +3,7 @@ import { userActions } from "./userActions.jsx";
 import { alertActions } from "../_actions/alertActions.jsx";
 
 export const userManager = {
-    login, logout, register, getProfileData
+    login, logout, register, getProfileData, addBooking
 }
 
 function login(username, password) {
@@ -71,3 +71,22 @@ function getProfileData() {
     }
 }
 
+
+function addBooking(data) {
+    return dispatch => {
+        dispatch(userActions.addRequest());
+
+        userService.addBooking(data)
+                    .then(
+                        success => {
+                            console.log(`New Booking added! ${data}`);
+                            dispatch(userActions.addSuccess(success));
+                            dispatch(alertActions.success("ADDED DATA (BOOKING) SUCCESSFUL!"));
+                        },
+                        error => {
+                            dispatch(userActions.addFailure(error));
+                            dispatch(alertActions.error(error));
+                        }
+                    );
+    } 
+}

@@ -4,7 +4,7 @@ const validate = values => {
       errors.firstName = 'Required'
     }
     if (!values.date) {
-      errors.date = 'Required'
+      // errors.date = 'Required'
     }
     if (!values.specialist) {
         errors.specialist = 'Required'

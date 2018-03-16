@@ -15,7 +15,7 @@ class Header extends React.Component {
         return (
             <header >
               {/* <PrivateRoute/> */}
-              <Calendar/>
+              {/* <Calendar/> */}
             <div className="top-header" id="home">
               <div className="container">
                 <div className="col-md-8 col-sm-8 col-xs-8 top-left">

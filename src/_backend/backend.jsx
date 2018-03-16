@@ -117,10 +117,10 @@ export function initBackend() {
 
                     if (options.headers && validUser[0]) {                
                         let newBooking = JSON.parse(options.body);
-                        bookingIsAvaliable(newBooking.date) 
-                                ? addBookingToHistory(newBooking)
-                                : reject("")
                         
+                        console.log(`new booking from backend: ${newBooking}`);
+                        addBookingToHistory(newBooking, validUser[0]);
+
                         resolve({ ok: true, data: () => validUser.history });
                         return;
                     }
@@ -192,13 +192,19 @@ function checkToken(token) {
     return filteredUser;
 }
 
-function addBookingToHistory(newBooking) {
+function addBookingToHistory(newBooking, validUser) {
+    console.log(validUser);
     
-    newBooking.id = validUser[0].history.length ? Math.max(...validUser.history.map(booking => booking.id)) + 1 : 1;
+    newBooking.id = validUser.history.length ? Math.max(...validUser.history.map(booking => booking.id)) + 1 : 1;
     usersDB.forEach(user => {
-        if(user.id === validUser[0].id) {    
+        if(user.id === validUser.id) {    
                 user.history.push(newBooking);
         }
     localStorage.setItem("usersDB", JSON.stringify(usersDB));
     });
+}
+
+
+function getUser(id) {
+    
 }
