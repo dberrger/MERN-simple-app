@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import { rootReducer } from '../_reducers/root-reducer.jsx';
 import { profileReducer } from '../_reducers/profileReducer.jsx';
+import { avaliableTimesReducer } from '../_reducers/avaliableTimesReducer';
 import { routerReducer } from "react-router-redux";
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
@@ -22,6 +23,7 @@ const initStore = {
 
 export const store = createStore(
     combineReducers({
+    avaliableTimesReducer,
     routing: routerReducer,
     profileReducer,
     rootReducer,

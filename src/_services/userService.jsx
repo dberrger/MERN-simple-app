@@ -3,7 +3,8 @@ import authHeader from "./authHeader.jsx";
 export const userService = {
     login, register, logout,
     getHistory, addBooking, deleteBooking,
-    getProfileData
+    getProfileData,
+    avaliableTimes
 }
 
 function login(username, password) {
@@ -55,7 +56,6 @@ function addBooking(data) {
        headers: authHeader(),
        body : JSON.stringify(data)
    }
-   debugger;
    return fetch('/add', requestOptions)
             .then(response => { return response.ok ? Promise.resolve(response.data()) : Promise.reject(response) })
 }
@@ -79,4 +79,16 @@ function getProfileData() {
     }
     return fetch('/profile', requestOptions)
             .then(response => { return response.ok ? Promise.resolve(response.data()) : Promise.reject(response) });
+}
+
+function avaliableTimes(date) {
+    console.log(date);
+    
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader(),
+        body: JSON.stringify(date)
+    }
+    return fetch('/times', requestOptions)
+                .then(response => { return response.ok ? Promise.resolve(response.data()) : Promise.reject(response)});
 }

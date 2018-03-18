@@ -10,8 +10,8 @@ import {BrowserRouter,Route,Link,withRouter,Switch} from 'react-router-dom';
 import Header from "../_components/Header.jsx";
 import Home from "../_components/Home.jsx";
 
-import '../styles/css/style.css';
-import '../styles/css/bootstrap.css';
+// import '../styles/css/style.css';
+// import '../styles/css/bootstrap.css';
 
 
 export default class App extends Component {

@@ -127,6 +127,24 @@ export function initBackend() {
                     reject('401 - Unauthorised');
                 }
 
+
+                if (url.match(/\/times$/) && options.method === 'POST') {
+
+                    let token = options.headers.Authorization;
+                    let validUser = checkToken(token);
+
+                    if (options.headers && validUser[0]) {                
+                       let unavaliable = getAvaliableTimes(JSON.parse(options.body));
+                       //getAvaliableDates(unavliable)
+                        console.log(unavaliable);
+                        
+                        resolve({ ok: true, data: () => (unavaliable) });
+                        return;
+                    }
+                    reject('401 - Unauthorised');
+                }
+
+
                 /**Delete booking */
 
                 // if (url.match(/\/delete$/) && options.method === 'POST') {
@@ -198,7 +216,7 @@ function addBookingToHistory(newBooking, validUser) {
     newBooking.id = validUser.history.length ? Math.max(...validUser.history.map(booking => booking.id)) + 1 : 1;
     usersDB.forEach(user => {
         if(user.id === validUser.id) {    
-                user.history.push(newBooking);
+            user.history.push(newBooking);
         }
     localStorage.setItem("usersDB", JSON.stringify(usersDB));
     });
@@ -207,4 +225,26 @@ function addBookingToHistory(newBooking, validUser) {
 
 function getUser(id) {
     
+}
+
+function getAvaliableTimes(date) {
+    let avaliableTimes = getFreeDay();
+   let arraysOfHistories = usersDB.map( user => {
+       return user.history
+   });
+   let merged = [].concat.apply([], arraysOfHistories);
+   let unavaliableTimes = merged.filter( booking => {
+        return booking.date.years === date.years &&
+            booking.date.months === date.months &&
+             booking.date.date === date.date
+   }).map( booking => (booking.date.time))
+    avaliableTimes = avaliableTimes.filter( ( el ) => !unavaliableTimes.includes( el ) );
+    return avaliableTimes;
+}
+
+//rewrite
+function getFreeDay() {
+    return ['9:00 am', '9:30 am', '10:00 am', '10:30 am', '11:00 am', '11:30 am',
+            '12:00 am', '1:00 pm', '1:30 pm', '2:00 pm', '2:30 pm', '3:00 pm',
+            '3:30 pm', '4:00 pm', '4:30 pm', '5:00 pm', '5:30 pm', '6:00 pm' ]
 }

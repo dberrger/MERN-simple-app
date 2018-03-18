@@ -6,7 +6,8 @@ export const userActions  = {
     getRequest, getSuccess, getFailure,
     addRequest, addSuccess, addFailure,
     deleteRequest, deleteSuccess, deleteFailure,
-    getProfileDataRequest, getProfileDataSuccess, getProfileDataFailure
+    getProfileDataRequest, getProfileDataSuccess, getProfileDataFailure,
+    avaliableTimesRequest, avaliableTimesSuccess, avaliableTimesFailure
 }
 
 /** register */
@@ -97,4 +98,16 @@ function getProfileDataSuccess(userData) {
 
 function getProfileDataFailure(message) {
     return { type: userConstants.GET_USER_PROFILE_DATA_FAILURE, error: message }
+}
+
+function avaliableTimesRequest() {
+    return {type: userConstants.GET_AVALIABLE_TIMES_REQUEST}
+}
+
+function avaliableTimesSuccess(times) {
+    return {type: userConstants.GET_AVALIABLE_TIMES_SUCCESS, avaliableTimes: times}
+}
+
+function avaliableTimesFailure(message) {
+    return {type: userConstants.GET_AVALIABLE_TIMES_FAILURE, error: message}
 }

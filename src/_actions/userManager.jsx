@@ -3,7 +3,7 @@ import { userActions } from "./userActions.jsx";
 import { alertActions } from "../_actions/alertActions.jsx";
 
 export const userManager = {
-    login, logout, register, getProfileData, addBooking
+    login, logout, register, getProfileData, addBooking, avaliableTimes
 }
 
 function login(username, password) {
@@ -89,4 +89,24 @@ function addBooking(data) {
                         }
                     );
     } 
+}
+
+function avaliableTimes(date) {
+    return dispatch => {
+        dispatch(userActions.avaliableTimesRequest());
+        
+        userService.avaliableTimes(date)
+                    .then(
+                        success => {
+                            console.log(`Times fetched! ${success}`);
+                            console.dir(success);
+                            dispatch(userActions.avaliableTimesSuccess(success));
+                            dispatch(alertActions.success("Times fetched SUCCESSFUL!"));
+                        },
+                        error => {
+                            dispatch(userActions.avaliableTimesFailure(error));
+                            dispatch(alertActions.error(error));
+                        }
+                    );
+    }
 }
