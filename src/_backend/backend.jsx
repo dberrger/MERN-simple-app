@@ -50,7 +50,9 @@ export function initBackend() {
                     
                     if (options.headers && validUser[0]) {                
                         // respond 200 OK with user
-                        resolve({ ok: true, data: () => validUser.history });
+                
+                        
+                        resolve({ ok: true, data: () => validUser[0].history });
                         return;
                     }
                     reject('401 - Unauthorised');
@@ -147,30 +149,27 @@ export function initBackend() {
 
                 /**Delete booking */
 
-                // if (url.match(/\/delete$/) && options.method === 'POST') {
+                if (url.match(/\/delete$/) && options.method === 'DELETE') {
 
-                //     let token = options.headers.Authorization;
-                //     var decoded = jwt.verify(token, 'shhhhh');
+                    let token = options.headers.Authorization;
+                    let validUser = checkToken(token);
+                   
                     
-                //     var filteredUser = usersDB.filter(user => {
-                //         return user.username === decoded.username && user.password === decoded.password;
-                //     });
+                    if (options.headers && validUser[0]) {                
+                        let delID = options.body;
+                        console.log(validUser[0]);
+                        console.log(usersDB);
+                        let userID = usersDB.filter(user => {  return user.id === validUser[0].id})[0].id;
+                            console.log(userID)
+                        usersDB[userID-1].history = usersDB[userID-1].history.filter(el =>  el.id != delID)
 
-                //     if (options.headers && filteredUser[0]) {                
-                        
-                //         let deleteBooking = JSON.parse(options.body);
-                //         usersDB.pop(usersDB.filter(user => {  return user.id === filteredUser[0].id})[0].history
-                //                 .filter(currentBooking =>{
-                //                     return deleteBooking.id === currentBooking.id
-                //                 }));
-                //         localStorage.setItem("usersDB", JSON.stringify(usersDB));
+                        localStorage.setItem("usersDB", JSON.stringify(usersDB));
                     
-                //         resolve({ ok: true, data: () => filteredUsers.history });
-                //         return;
-                //     }
-                //     reject('401 - Unauthorised');
-                //     return;
-                // }
+                        resolve({ ok: true, data: () => ({}) });
+                        return;
+                    }
+                    reject('401 - Unauthorised');
+                }
                 
                 // pass through any requests not handled above
                 fetch(url, options).then(response => resolve(response));
@@ -233,6 +232,7 @@ function getAvaliableTimes(date) {
        return user.history
    });
    let merged = [].concat.apply([], arraysOfHistories);
+   if(merged.length === 0) return avaliableTimes;
    let unavaliableTimes = merged.filter( booking => {
         return booking.date.years === date.years &&
             booking.date.months === date.months &&

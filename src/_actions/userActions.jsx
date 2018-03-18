@@ -3,7 +3,7 @@ import { userConstants } from "../_constants/user-constants.jsx";
 export const userActions  = {
     registerRequest, registerSuccess, registerFailure,
     loginRequest, loginSuccess, loginFailure,
-    getRequest, getSuccess, getFailure,
+    getHistoryRequest, getHistorySuccess, getHistoryFailure,
     addRequest, addSuccess, addFailure,
     deleteRequest, deleteSuccess, deleteFailure,
     getProfileDataRequest, getProfileDataSuccess, getProfileDataFailure,
@@ -38,19 +38,19 @@ function loginFailure(user) {
     return { type: userConstants.LOGIN_FAILURE, user }
 }
 
-/** get */
+// /** get */
 
-function getRequest(user) {
-    return { type: userConstants.GET_HISTORY_REQUEST, user }
-}
+// function getHistoryRequest(user) {
+//     return { type: userConstants.GET_HISTORY_REQUEST, user }
+// }
 
-function getSuccess(user) {
-    return { type: userConstants.GET_HISTORY_SUCCESS, user }
-}
+// function getHistorySuccess(user) {
+//     return { type: userConstants.GET_HISTORY_SUCCESS, user }
+// }
 
-function getFailure(user) {
-    return { type: userConstants.GET_HISTORY_FAILURE, user }
-}
+// function getHistoryFailure(user) {
+//     return { type: userConstants.GET_HISTORY_FAILURE, user }
+// }
 
 /** add */
 
@@ -68,16 +68,16 @@ function addFailure(user) {
 
 /** delete */
 
-function deleteRequest(user) {
-    return { type: userConstants.DELETE_BOOKING_REQUEST, user }
+function deleteRequest(id) {
+    return { type: userConstants.DELETE_BOOKING_REQUEST }
 }
 
-function deleteSuccess(user) {
-    return { type: userConstants.DELETE_BOOKING_SUCCESS, user }
+function deleteSuccess() {
+    return { type: userConstants.DELETE_BOOKING_SUCCESS}
 }
 
-function deleteFailure(user) {
-    return { type: userConstants.DELETE_BOOKING_FAILURE, user }
+function deleteFailure(message) {
+    return { type: userConstants.DELETE_BOOKING_FAILURE, error: message }
 }
 
 /** logOUT */
@@ -100,6 +100,8 @@ function getProfileDataFailure(message) {
     return { type: userConstants.GET_USER_PROFILE_DATA_FAILURE, error: message }
 }
 
+
+
 function avaliableTimesRequest() {
     return {type: userConstants.GET_AVALIABLE_TIMES_REQUEST}
 }
@@ -110,4 +112,17 @@ function avaliableTimesSuccess(times) {
 
 function avaliableTimesFailure(message) {
     return {type: userConstants.GET_AVALIABLE_TIMES_FAILURE, error: message}
+}
+
+
+function getHistoryRequest() {
+    return {type: userConstants.GET_HISTORY_REQUEST}
+}
+
+function getHistorySuccess(history) {
+    return {type: userConstants.GET_HISTORY_SUCCESS, history: history}
+}
+
+function getHistoryFailure(message) {
+    return {type: userConstants.GET_HISTORY_FAILURE, error: message}
 }

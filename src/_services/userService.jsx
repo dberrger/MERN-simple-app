@@ -46,8 +46,8 @@ function getHistory() {
       headers: authHeader()
     }
     return fetch('/history', requestOptions)
-            .then(response => { response.ok ? response.data() : response })
-            .catch(err => { console.log(`unexpected error GETHISTORY : ${err}`) })
+                .then(response => { return response.ok ? Promise.resolve(response.data()) : Promise.reject(response) })
+                .catch(err => { console.log(`unexpected error GETHISTORY : ${err}`) })
 }
 
 function addBooking(data) {
@@ -67,8 +67,7 @@ function deleteBooking(id) {
         body : JSON.stringify(id)
     }
     return fetch('/delete', requestOptions)
-            .then(response => { response.ok ? response.data() : response })
-            .catch(err => { console.log(`unexpected error GETHISTORY : ${err}`) })
+            .then(response => { response.ok ? Promise.resolve(response.data()) : Promise.reject(response)  })
 }
 
 

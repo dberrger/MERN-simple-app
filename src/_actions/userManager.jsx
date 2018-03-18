@@ -3,7 +3,7 @@ import { userActions } from "./userActions.jsx";
 import { alertActions } from "../_actions/alertActions.jsx";
 
 export const userManager = {
-    login, logout, register, getProfileData, addBooking, avaliableTimes
+    login, logout, register, getProfileData, addBooking, avaliableTimes, getHistory, deleteBooking
 }
 
 function login(username, password) {
@@ -91,15 +91,34 @@ function addBooking(data) {
     } 
 }
 
+
+function deleteBooking(id) {
+    return dispatch => {
+        dispatch(userActions.deleteRequest());
+
+        userService.deleteBooking(id)
+                    .then(
+                        success => {
+                            console.log(`Booking cancelled! ${success}`);
+                            dispatch(userActions.deleteSuccess());
+                            dispatch(alertActions.success("BOOKING HAS BEEN CANCELLED SUCCESS!"));
+                        },
+                        error => {
+                            dispatch(userActions.deleteFailure(error));
+                            dispatch(alertActions.error(error));
+                        }
+                    );
+    }
+}
+
 function avaliableTimes(date) {
     return dispatch => {
         dispatch(userActions.avaliableTimesRequest());
-        
+
         userService.avaliableTimes(date)
                     .then(
                         success => {
                             console.log(`Times fetched! ${success}`);
-                            console.dir(success);
                             dispatch(userActions.avaliableTimesSuccess(success));
                             dispatch(alertActions.success("Times fetched SUCCESSFUL!"));
                         },
@@ -109,4 +128,25 @@ function avaliableTimes(date) {
                         }
                     );
     }
+}
+
+function getHistory() {
+    return dispatch => {
+        dispatch(userActions.getHistoryRequest());
+
+        userService.getHistory()
+                    .then(
+                        success => {
+                            
+                            console.log(`History fetched! ${success}`);
+                            dispatch(userActions.getHistorySuccess(success));
+                            dispatch(alertActions.success("History fetched SUCCESSFUL!"));
+                        },
+                        error => {
+                            dispatch(userActions.getHistoryFailure(error));
+                            dispatch(alertActions.error(error));
+                        }
+                    );
+    }
+
 }
