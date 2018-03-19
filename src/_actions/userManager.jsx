@@ -101,7 +101,9 @@ function deleteBooking(id) {
                         success => {
                             console.log(`Booking cancelled! ${success}`);
                             dispatch(userActions.deleteSuccess());
-                            dispatch(alertActions.success("BOOKING HAS BEEN CANCELLED SUCCESS!"));
+                            
+                            dispatch(alertActions.success("BOOKING HAS BEEN CANCELLED SUCCESSFULLY!"));
+                            getHistory()(dispatch);
                         },
                         error => {
                             dispatch(userActions.deleteFailure(error));

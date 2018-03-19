@@ -35,7 +35,7 @@ class Upcoming extends React.Component {
                                 let month = booking.date.months;
                                 let day = booking.date.date;
                                 let timeObj = moment({y: year, M: month, d: day, h: timeH, m: timeM})
-                                return moment(timeObj).isBefore(moment());
+                                return !moment(timeObj).isBefore(moment());
                             } ).map(booking => {
                             return (<div key={booking.id}>
                                         <span>{booking.id}</span>
