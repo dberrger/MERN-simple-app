@@ -43,73 +43,80 @@ class Register extends React.Component {
     }
 
     render() {
-        console.log(this.props.result);
-        
-        const { registering  } = this.props;    
+       
         const { user, submitted } = this.state;
         return (
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div id="small-dialog1" class="mfp-hide book-form">
-
-             <h2>{this.props.result}</h2>
-             <form name="form" onSubmit={this.handleSubmit}>
-                 <div>
-                     <label htmlFor="firstName">First Name</label>
-                     <input type="text"   name="firstName" value={user.firstName} onChange={this.handleChange} />
-                     {submitted && !user.firstName &&
-                         <div className="help-block">First Name is required</div>
-                     }
-                 </div>
-                 <div>
-                     <label htmlFor="lastName">Last Name</label>
-                     <input type="text"   name="lastName" value={user.lastName} onChange={this.handleChange} />
-                     {submitted && !user.lastName &&
-                        <div className="help-block">Last Name is required</div>
-                     }
-                 </div>
-                 <div>
-                     <label htmlFor="username">Username</label>
-                     <input type="text"   name="username" value={user.username} onChange={this.handleChange} />
-                     {submitted && !user.username &&
-                         <div className="help-block">Username is required</div>
-                     }
-                 </div>
-                 <div>
-                     <label htmlFor="username">Email</label>
-                     <input type="text"   name="email" value={user.email} onChange={this.handleChange} />
-                     {submitted && !user.email &&
-                         <div className="help-block">Email is required</div>
-                     }
-                 </div>
-                 <div>
-                     <label htmlFor="password">Password</label>
-                     <input type="password"   name="password" value={user.password} onChange={this.handleChange} />
-                     {submitted && !user.password &&
-                         <div className="help-block">Password is required</div>
-                     }
-                 </div>  
-                 <div>
-                     <button  type="submit" >Register</button>
-                     {registering}
-                     <Link to="/" className="btn btn-link">Cancel</Link>
+            
+                <div className="container">
+                <div className="card card-register mx-auto mt-5">
+                    <div className="card-header">Register an Account</div>
+                    <div className="card-body">
+                    <h2>{this.props.result}</h2>
+                    <form name="form" onSubmit={this.handleSubmit}>
+                        <div className="form-group">
+                        <div className="form-row">
+                            <div className="col-md-6">
+                            <label for="exampleInputName">First name</label>
+                            <input className="form-control" type="text" name="firstName" placeholder="Enter first name"  value={user.firstName} onChange={this.handleChange}/>
+                            {submitted && !user.firstName &&
+                                    <div className="help-block">First Name is required</div>
+                                }
+                            </div>
+                            <div className="col-md-6">
+                            <label for="exampleInputLastName">Last name</label>
+                            <input className="form-control" name="lastName" type="text" placeholder="Enter last name" value={user.lastName} onChange={this.handleChange}/>
+                            {submitted && !user.lastName &&
+                                    <div className="help-block">Last Name is required</div>
+                                }
+                            </div>
+                        </div>
+                        </div>
+                        <div className="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input className="form-control" name="email" placeholder="Enter email" value={user.email} onChange={this.handleChange}/>
+                        {submitted && !user.email &&
+                                    <div className="help-block">Email is required</div>
+                                }
+                        </div>
+                        <div className="form-group">
+                        <label for="username">Username</label>
+                        <input className="form-control" name="username"  placeholder="Enter username"  value={user.username} onChange={this.handleChange}/>
+                        {submitted && !user.username &&
+                                    <div className="help-block">Username is required</div>
+                                }
+                        </div>
+                        <div className="form-group">
+                        <div className="form-row">
+                            <div className="col-md-6">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input className="form-control" name="password" type="password" placeholder="Password" value={user.password} onChange={this.handleChange}/>
+                            {submitted && !user.password &&
+                                    <div className="help-block">Password is required</div>
+                                }
+                            </div>
+                            <div className="col-md-6">
+                            {/* todo confirmation */}
+                            <label for="exampleConfirmPassword">Confirm password</label>
+                            <input className="form-control" name="password" type="password" placeholder="Confirm password" value={user.password} onChange={this.handleChange}/>
+                            {submitted && !user.password &&
+                                    <div className="help-block">Passwords do not match</div>
+                                }
+                            </div>
+                        </div>
+                        </div>
+                        <button type="submit" className="btn btn-primary btn-block">Register</button>
+                    </form>
+                    <div className="text-center">
+                        <Link className="d-block small mt-3" to="/login">Login Page</Link>
+                        {/* <a className="d-block small" href="forgot-password.html">Forgot Password?</a> */}
+                    </div>
+                    </div>
                 </div>
-             </form>
-                 </div>
-             </div>
-            </div>  
+                </div> 
         );
     }
 }
 
-
-
-function mapStateToProps(state) {
-    console.log(state);
-    
-    return {
-        result: state.rootReducer.result
-    }
-}
-
-export default  Register = connect(mapStateToProps)(Register);
+export default  Register = connect(state => ({
+    result: state.rootReducer.result
+}))(Register);

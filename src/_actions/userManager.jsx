@@ -1,9 +1,19 @@
+import React from 'react';
 import { userService } from "../_services/userService.jsx";
 import { userActions } from "./userActions.jsx";
 import { alertActions } from "../_actions/alertActions.jsx";
+import { Redirect } from "react-router-dom";
+import { history } from "../_backend/history";
 
 export const userManager = {
-    login, logout, register, getProfileData, addBooking, avaliableTimes, getHistory, deleteBooking
+    login,
+    logout,
+    register,
+    getProfileData,
+    addBooking,
+    avaliableTimes,
+    getHistory,
+    deleteBooking
 }
 
 function login(username, password) {
@@ -13,8 +23,12 @@ function login(username, password) {
         userService.login(username, password)
                     .then(
                         user => {
+                            console.log(user)
+                            user.isLogged = true;
+                            localStorage.setItem('user', JSON.stringify(user));
                             dispatch(userActions.loginSuccess(user));
                             dispatch(alertActions.success("AUTHENTICATION SUCCESSFUL!"));
+                            history.push('/');
                         },
                         error => {
                             dispatch(userActions.loginFailure(error));
@@ -27,9 +41,10 @@ function login(username, password) {
 function logout() { 
 
     return dispatch => {
-        userService.logout().logSuccess 
-            ? dispatch(userActions.logOut())
-            : null; 
+        console.log(userService.logout());
+        userService.logout() 
+            ? null
+            : dispatch(userActions.logOut()); 
     }
 }
 
@@ -43,6 +58,7 @@ function register(userRegister) {
                             console.log("success register from userManager");
                             dispatch(userActions.registerSuccess(success));
                             dispatch(alertActions.success("REGISTRATION SUCCESSFUL!"));
+                           history.push('/'); 
                         },
                         error => {
                             dispatch(userActions.registerFailure(error));

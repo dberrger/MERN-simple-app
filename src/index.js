@@ -6,14 +6,15 @@ import { Provider } from 'react-redux';
 import { initBackend } from "./_backend/backend.jsx";
 import { store } from "./_backend/redux-store.jsx";
 import {BrowserRouter, Route} from 'react-router-dom';
-
+import { history } from "../src/_backend/history";
+import { Router } from 'react-router';
 
 
 initBackend();
 
 ReactDOM.render(<Provider store={store}>
-                    <BrowserRouter> 
+                    <Router history={history}>
                         <Route path='/' component={App}/>
-                    </BrowserRouter>
+                    </Router>
                 </Provider>,
                 document.getElementById('root'));

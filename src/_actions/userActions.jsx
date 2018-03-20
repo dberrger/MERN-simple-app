@@ -7,7 +7,8 @@ export const userActions  = {
     addRequest, addSuccess, addFailure,
     deleteRequest, deleteSuccess, deleteFailure,
     getProfileDataRequest, getProfileDataSuccess, getProfileDataFailure,
-    avaliableTimesRequest, avaliableTimesSuccess, avaliableTimesFailure
+    avaliableTimesRequest, avaliableTimesSuccess, avaliableTimesFailure,
+    logOut
 }
 
 /** register */
@@ -27,15 +28,15 @@ function registerFailure(user) {
 /** login */
 
 function loginRequest(user) {
-    return { type: userConstants.LOGIN_REQUEST, user }
+    return { type: userConstants.LOGIN_REQUEST }
 }
 
 function loginSuccess(user) {
     return { type: userConstants.LOGIN_SUCCESS, user }
 }
 
-function loginFailure(user) {
-    return { type: userConstants.LOGIN_FAILURE, user }
+function loginFailure(message) {
+    return { type: userConstants.LOGIN_FAILURE, error: message }
 }
 
 // /** get */
@@ -82,7 +83,7 @@ function deleteFailure(message) {
 
 /** logOUT */
 
-function logOut(user) {
+function logOut() {
     return { type: userConstants.LOGOUT}
 }
 

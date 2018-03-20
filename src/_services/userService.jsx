@@ -15,13 +15,7 @@ function login(username, password) {
   } 
   
   return fetch('/authenticate', requestOptions)
-            .then(response => { return response.ok ? response.data() : response })
-            .then(user => {
-                if(localStorage.getItem('user')) return Promise.reject("You are already logged")               
-                localStorage.setItem('user', JSON.stringify(user));
-            })
-            // .catch(err => {console.log(`unexpected error LOGIN: ${err}`);
-            // return Promise.reject("You're already logged!") })
+            .then(response => (handleResponse(response)))
 }
 
 function register(user) {
@@ -31,13 +25,15 @@ function register(user) {
       body : JSON.stringify(user)
   } 
   return fetch('/register', requestOptions)
-            .then( response => {            
-                response.status ? Promise.resolve(response.data()) : Promise.reject(response) });
+            .then(response => {
+                console.log(response.ok);
+                return handleResponse(response)})
 }
 
 function logout() {
-    localStorage.removeItem('loggedUser');
-    return localStorage.getItem('loggedUser') ? {logSuccess: true} : {logSuccess : false}
+    console.log("LOt")
+    localStorage.removeItem('user');
+    return false
 }
 
 function getHistory() {
@@ -46,7 +42,7 @@ function getHistory() {
       headers: authHeader()
     }
     return fetch('/history', requestOptions)
-                .then(response => { return response.ok ? Promise.resolve(response.data()) : Promise.reject(response) })
+                .then(response => (handleResponse(response)))
                 .catch(err => { console.log(`unexpected error GETHISTORY : ${err}`) })
 }
 
@@ -57,7 +53,7 @@ function addBooking(data) {
        body : JSON.stringify(data)
    }
    return fetch('/add', requestOptions)
-            .then(response => { return response.ok ? Promise.resolve(response.data()) : Promise.reject(response) })
+             .then(response => (handleResponse(response)))
 }
 
 function deleteBooking(id) {
@@ -67,7 +63,7 @@ function deleteBooking(id) {
         body : JSON.stringify(id)
     }
     return fetch('/delete', requestOptions)
-            .then(response => { response.ok ? Promise.resolve(response.data()) : Promise.reject(response)  })
+                .then(response => (handleResponse(response)))
 }
 
 
@@ -77,7 +73,7 @@ function getProfileData() {
         headers: authHeader()
     }
     return fetch('/profile', requestOptions)
-            .then(response => { return response.ok ? Promise.resolve(response.data()) : Promise.reject(response) });
+                    .then(response => (handleResponse(response)))
 }
 
 function avaliableTimes(date) {
@@ -89,5 +85,9 @@ function avaliableTimes(date) {
         body: JSON.stringify(date)
     }
     return fetch('/times', requestOptions)
-                .then(response => { return response.ok ? Promise.resolve(response.data()) : Promise.reject(response)});
+                .then(response => (handleResponse(response)))
+}
+
+function handleResponse(response) {
+    return response.ok ? Promise.resolve(response.data()) : Promise.reject(response);
 }

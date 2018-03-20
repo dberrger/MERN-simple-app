@@ -12,28 +12,35 @@ import Home from "../_components/Home.jsx";
 
  import '../styles/css/style.css';
  import '../styles/css/bootstrap.css';
+ import '../styles/css/sb-admin.css'
+ import "../styles/css/font-awesome.min.css";
 
 
 export default class App extends Component {
 
     constructor(props) {
-        super(props);
-        
+        super(props);   
+        // this.isLogged = this.isLogged.bind(this);    
     }
     
+    // isLogged() {
+    //     localStorage.user.isLogged ? dispatch(userActions.loginSuccess(user)) : 
+    // }
 render() {
     return (
         <div>
             <Header/>
-            <div> 
+            <div>
+                <Switch> 
                 <Route path="/" exact component={Home} />             
                 <Route path="/register" exact component={_components.Register} />
                 <Route path="/login" component={_components.Login} />
                 <Route path="/cabinet" component={ () =>(localStorage.getItem('user') 
                                                             ?  <_components.Cabinet/> 
-                                                            : <div>Unautorised</div>) } />
+                                                            : <div>Unautorised</div>) }/>
                 <Route path="/home" component={_components.Home} />
-               
+                <Route render={()=>(<h1>404 Not Found</h1>)} />
+               </Switch>
             </div>
         </div>
     );

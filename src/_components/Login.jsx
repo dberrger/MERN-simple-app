@@ -38,49 +38,44 @@ class Login extends React.Component {
     }
 
     render() {
-        // const { loggingIn } = this.props;
          const { username, password, submitted } = this.state;
         return (
-            <div class="modal video-modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModal2">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div id="small-dialog2" class="mfp-hide book-form">
-                <h2>Login</h2>
+        <div className="container ">
+            <div className="card card-login mx-auto mt-5 md-5">
+            <div className="card-header">Login</div>
+            <div className="card-body">
                 <form name="form" onSubmit={this.handleSubmit}>
-                    <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
-                        <label htmlFor="username">Username</label>
-                        <input type="text"  name="username" value={username} onChange={this.handleChange} />
-                        {submitted && !username &&
-                            <div>Username is required</div>
-                        }
+                <div className="form-group">
+                    <label htmlFor="exampleInputEmail1">Username</label>
+                    <input className="form-control"  placeholder="Enter username" name="username" value={username} onChange={this.handleChange} />
+                    {submitted && !username &&  <div> Username is required</div>  }
+                </div>
+                <div className="form-group">
+                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <input className="form-control" type="password" placeholder="Password"  name="password" value={password} onChange={this.handleChange} />
+                    {submitted && !password &&  <div>Password is required</div>  }
+                </div>
+                <div className="form-group">
+                    <div className="form-check">
+                    <label className="form-check-label">
+                        <input className="form-check-input" type="checkbox"/> Remember Password</label>
                     </div>
-                    <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
-                        <label htmlFor="password">Password</label>
-                        <input type="password"  name="password" value={password} onChange={this.handleChange} />
-                        {submitted && !password &&
-                            <div>Password is required</div>
-                        }
-                    </div>
-                    <div>
-                        <button>Login</button>
-                        {/* {loggingIn} */}
-                        <Link to="/register">Register</Link>
-                    </div>
+                </div>
+                {/* <a className="btn btn-primary btn-block" href="index.html">Login</a> */}
+                <button className="btn btn-primary btn-block">Login</button>
                 </form>
+                <div className="text-center">
+                <Link className="d-block small mt-3" to="/register">Register an Account</Link>
+                {/* <a className="d-block small" href="forgot-password.html">Forgot Password?</a> */}
+                </div>
+            </div>
             </div>
         </div>
-    </div>
-</div>
         );
     }
 }
 
 
-function mapStateToProps(state) {
-    const { loggingIn } = state.authentication;
-    return {
-        loggingIn
-    };
-}
+ 
 
 export default Login = connect(null)(Login);

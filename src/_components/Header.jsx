@@ -1,38 +1,61 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { PrivateRoute } from "./PrivateRoute/PrivateRoute.jsx";
 import Calendar from "./Calendar.jsx";
+import { userManager } from "../_actions/userManager";
+import { connect } from 'react-redux';
+import { history } from "../_backend/history";
 
 class Header extends React.Component {
     constructor(props){
       super(props);
 
+      this.logout = this.logout.bind(this);
     }
 
-
+    logout() {
+      userManager.logout()(this.props.dispatch);
+      history.push('/');
+    }
 
     render() {
+      const unauthorizedLogin = <li className="nav-item"> <Link className="nav-link" to="/login">Log in</Link> </li>;
+      const unauthorizedRegister = <li className="nav-item"> <Link className="nav-link" to="/register">Register</Link> </li> ;
+      console.log(this.props.isLogged);
         return (
-            <header >
-              {/* <PrivateRoute/> */}
-              {/* <Calendar/> */}
-            <div className="top-header" id="home">
-              <div className="container">
-                <div className="col-md-8 col-sm-8 col-xs-8 top-left">
-                  <p><i className="fa fa-map-marker" aria-hidden="true"></i> 11/665 Postal street, Park avenue,USA</p>
-                </div>
-                <div className="col-md-4 col-sm-4 col-xs-4 top-right">
-                  <Link to="/register" className="sign-in" onclick="" data-toggle="modal" data-target="#myModal1"><span></span> Sign In</Link>
-                  {/* <a href="#" className="cabinet" style={{display:none}} onclick="mycabinet()"><span></span> CABINET MINISTRA</a> */}
-                  {/* <a href="#" className="log-out" style={{display:none}} onclick="logout()"><span></span>log-out</a> */}
-                  <Link to="/login"className="sign-up"   data-toggle="modal" data-target="#myModal2"><span></span> Sign Up</Link>
-                </div>
-                <div className="clearfix"></div>
-              </div>
+          <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+          <div className="container">
+            <Link className="navbar-brand" to="/">B-style</Link>
+            <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarResponsive">
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/">About</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/">Services</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/">Contact</Link>
+                </li>
+                {this.props.isLogged ? <li className="nav-item"  onClick={this.logout}> <Link className="nav-link" to="/">Logout</Link> </li>
+                 :  [
+                    <li className="nav-item"> <Link className="nav-link" to="/login">Log in</Link> </li>,
+                    <li className="nav-item"> <Link className="nav-link" to="/register">Register</Link> </li>
+                    ]
+                    }
+              </ul>
             </div>
-            </header> 
+          </div>
+        </nav>
         );
     }
 }
 
-export default Header;
+
+
+export default Header = connect( state => ({
+  isLogged: state.authReducer.isLogged
+}))(Header);

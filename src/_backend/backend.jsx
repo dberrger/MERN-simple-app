@@ -23,12 +23,6 @@ export function initBackend() {
                         let user = filteredUsers[0];
                         let JWTtoken = jwt.sign({ id: user.id, username: user.username, password: user.password }, 'shhhhh');
                         let responseJson = {
-                            id: user.id,
-                            username: user.username,
-                            firstName: user.firstName,
-                            lastName: user.lastName,
-                            email: user.email,
-                            // history: user.history,
                             token: JWTtoken
                         };
                         console.log(responseJson.token);
@@ -80,7 +74,7 @@ export function initBackend() {
                     usersDB.push(requestUser);
                     localStorage.setItem("usersDB", JSON.stringify(usersDB));
                 
-                    resolve({ status: true, data: () => ({}) });
+                    resolve({ ok: true, data: () => ({}) });
                     return;
                 }
 
