@@ -7,7 +7,7 @@ import asyncValidate from './asyncValidate'
 import { connect } from 'react-redux';
 
 import  Datepicker  from "./Datepicker.jsx";
-import Calendar from "../../../Calendar.jsx";
+import Calendar from "./Calendar.jsx";
 import DropdownList from 'react-widgets/lib/DropdownList'
 import 'react-widgets/dist/css/react-widgets.css'
 

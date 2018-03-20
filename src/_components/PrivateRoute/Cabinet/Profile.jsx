@@ -13,7 +13,7 @@ class Profile extends React.Component {
         return (
             <div> 
             {    
-                this.props.isLoading ? console.log('loading') : 
+                this.props.isLoading ? <div>Loading..</div> : 
                 <div> 
                 <div>Name : {this.props.user.firstName}</div>
                 <div>Surname: {this.props.user.lastName}</div>
@@ -28,12 +28,7 @@ class Profile extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    console.log(state);
-    return {
-        user: state.profileReducer.userProfileData,
-        isLoading: state.profileReducer.userProfileDataLoading
-    }
-}
-
-export default  Profile = connect(mapStateToProps)(Profile);
+export default  Profile = connect(state => ({
+    user: state.profileReducer.userProfileData,
+    isLoading: state.profileReducer.userProfileDataLoading 
+}))(Profile);

@@ -2,7 +2,7 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import PropTypes from 'prop-types'
-import {userManager} from "../_actions/userManager";
+import {userManager} from "../../../../_actions/userManager";
 import { connect } from 'react-redux';
 import 'react-datepicker/dist/react-datepicker.css';
 

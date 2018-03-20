@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, Redirect } from "react-router-dom";
 import { PrivateRoute } from "./PrivateRoute/PrivateRoute.jsx";
-import Calendar from "./Calendar.jsx";
 import { userManager } from "../_actions/userManager";
 import { connect } from 'react-redux';
 import { history } from "../_backend/history";
