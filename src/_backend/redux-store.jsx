@@ -11,6 +11,7 @@ import { reducer as formReducer } from 'redux-form';
 
 const logger = createLogger();
 
+
 export const store = createStore(
     combineReducers({
         authReducer,

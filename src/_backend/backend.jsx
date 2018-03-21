@@ -1,7 +1,7 @@
 var jwt = require('jsonwebtoken');
 //configure backend (localStorage)
 let usersDB = JSON.parse(localStorage.getItem('usersDB')) || [];
-
+import moment from "moment";
 
 export function initBackend() {
     let fetch = window.fetch;
@@ -128,13 +128,14 @@ export function initBackend() {
 
                     let token = options.headers.Authorization;
                     let validUser = checkToken(token);
+                    let date = JSON.parse(options.body);
 
                     if (options.headers && validUser[0]) {                
-                       let unavaliable = getAvaliableTimes(JSON.parse(options.body));
+                       let avaliable = getAvaliableTimes(date);
                        //getAvaliableDates(unavliable)
-                        console.log(unavaliable);
-                        
-                        resolve({ ok: true, data: () => (unavaliable) });
+                        if(date.date === moment().date() && date.months === moment().month() && date.years === moment().year())         
+                            avaliable = filterTimes(avaliable);
+                        resolve({ ok: true, data: () => (avaliable) });
                         return;
                     }
                     reject('401 - Unauthorised');
@@ -227,18 +228,41 @@ function getAvaliableTimes(date) {
    });
    let merged = [].concat.apply([], arraysOfHistories);
    if(merged.length === 0) return avaliableTimes;
-   let unavaliableTimes = merged.filter( booking => {
-        return booking.date.years === date.years &&
-            booking.date.months === date.months &&
-             booking.date.date === date.date
-   }).map( booking => (booking.date.time))
-    avaliableTimes = avaliableTimes.filter( ( el ) => !unavaliableTimes.includes( el ) );
+   let unavaliableTimes = merged
+        .filter( booking => {
+            return booking.date.years === date.years &&
+                   booking.date.months === date.months &&
+                   booking.date.date === date.date
+            })
+        .map( booking => (booking.date.time))
+             avaliableTimes = avaliableTimes.filter( ( el ) => !unavaliableTimes.includes( el ));
     return avaliableTimes;
 }
 
 //rewrite
 function getFreeDay() {
-    return ['9:00 am', '9:30 am', '10:00 am', '10:30 am', '11:00 am', '11:30 am',
-            '12:00 am', '1:00 pm', '1:30 pm', '2:00 pm', '2:30 pm', '3:00 pm',
-            '3:30 pm', '4:00 pm', '4:30 pm', '5:00 pm', '5:30 pm', '6:00 pm' ]
+    return ['09:00 am', '09:30 am', '10:00 am', '10:30 am', '11:00 am', '11:30 am',
+            '12:00 am', '01:00 pm', '01:30 pm', '02:00 pm', '02:30 pm', '03:00 pm',
+            '03:30 pm', '04:00 pm', '04:30 pm', '05:00 pm', '05:30 pm', '06:00 pm' ]
 }
+
+function filterTimes(times) {
+    return times.filter(elem => compare(elem))
+}
+
+
+function compare(elem) {
+    let timeH = moment(elem,['HH:mm a']).hours();
+    let timeM = moment(elem,['HH:mm a']).minutes();
+    if  (timeH === 0) timeH = 12;
+    // let res = moment().hour() >= timeH ? true :
+    // moment().minute() >= timeM ? false : true;
+    // if(moment().hour() > timeH) return false;
+    // if(moment().hour() === timeH) 
+    // {
+    //     if(moment().minutes() > timeM) return false; 
+    // } 
+  // return true;
+    return moment().hour() > timeH ? false :
+        moment().hour() === timeH && moment().minutes() > timeM ? false : true
+  }

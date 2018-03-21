@@ -1,7 +1,11 @@
 import { userConstants } from "../_constants/user-constants.jsx";
 
-export function authReducer (state = {isLogged: false}, action)  {
+export function authReducer (state = {isLogged: JSON.parse(localStorage.user).isLogged ? true : false }, action)  {
     switch (action.type) {
+        //bad
+        case userConstants.SET_LOGGED:
+            return Object.assign({}, state, { isLogged: true });
+
         case userConstants.LOGIN_REQUEST:
             return Object.assign({}, state, { isLogged: false });
 

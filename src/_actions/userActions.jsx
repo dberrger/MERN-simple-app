@@ -8,7 +8,7 @@ export const userActions  = {
     deleteRequest, deleteSuccess, deleteFailure,
     getProfileDataRequest, getProfileDataSuccess, getProfileDataFailure,
     avaliableTimesRequest, avaliableTimesSuccess, avaliableTimesFailure,
-    logOut
+    logOut, setLogged
 }
 
 /** register */
@@ -126,4 +126,8 @@ function getHistorySuccess(history) {
 
 function getHistoryFailure(message) {
     return {type: userConstants.GET_HISTORY_FAILURE, error: message}
+}
+
+function setLogged() {
+    return {type: userConstants.SET_LOGGED}
 }

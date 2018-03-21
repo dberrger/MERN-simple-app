@@ -14,6 +14,7 @@ import Home from "../_components/Home.jsx";
  import '../styles/css/bootstrap.css';
  import '../styles/css/sb-admin.css'
  import "../styles/css/font-awesome.min.css";
+import { userActions } from '../_actions/userActions';
 
 
 export default class App extends Component {
@@ -24,8 +25,10 @@ export default class App extends Component {
     }
     
     // isLogged() {
-    //     localStorage.user.isLogged ? dispatch(userActions.loginSuccess(user)) : 
+    //     //bad (temporary)
+    //     localStorage.user.isLogged ? dispatch(userActions.setLogged()) : null
     // }
+
 render() {
     return (
         <div>
@@ -33,8 +36,12 @@ render() {
             <div>
                 <Switch> 
                 <Route path="/" exact component={Home} />             
-                <Route path="/register" exact component={_components.Register} />
-                <Route path="/login" component={_components.Login} />
+                <Route path="/register" exact component={ () =>(localStorage.getItem('user') 
+                                                            ? <_components.Home/> 
+                                                            : <_components.Register/>) } />
+                <Route path="/login" component={ () =>(localStorage.getItem('user') 
+                                                            ? <_components.Home/>
+                                                            : <_components.Login/>) } />
                 <Route path="/cabinet" component={ () =>(localStorage.getItem('user') 
                                                             ?  <_components.Cabinet/> 
                                                             : <div>Unautorised</div>) }/>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, Redirect } from "react-router-dom";
-import { PrivateRoute } from "./PrivateRoute/PrivateRoute.jsx";
 import { userManager } from "../_actions/userManager";
 import { connect } from 'react-redux';
 import { history } from "../_backend/history";
@@ -39,11 +38,21 @@ class Header extends React.Component {
                 <li className="nav-item">
                   <Link className="nav-link" to="/">Contact</Link>
                 </li>
-                {this.props.isLogged ? <li className="nav-item"  onClick={this.logout}> <Link className="nav-link" to="/">Logout</Link> </li>
-                 :  [
-                    <li className="nav-item"> <Link className="nav-link" to="/login">Log in</Link> </li>,
-                    <li className="nav-item"> <Link className="nav-link" to="/register">Register</Link> </li>
-                    ]
+				<li className="nav-item">
+                  <a className="nav-link">|</a>
+                </li>
+				{/* REWRITE !! */}
+                {this.props.isLogged
+                 ? 
+                  [
+				  <li className="nav-item"> <Link className="nav-link" to="/cabinet">Cabinet</Link></li>,
+				  <li className="nav-item"  onClick={this.logout}> <Link className="nav-link" to="/">Logout</Link></li>
+				  ]
+				:  
+            	[
+                <li className="nav-item"> <Link className="nav-link" to="/login">Log in</Link> </li>,
+                <li className="nav-item"> <Link className="nav-link" to="/register">Register</Link> </li>
+                ]
                     }
               </ul>
             </div>
