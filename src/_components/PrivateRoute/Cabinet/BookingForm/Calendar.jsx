@@ -4,7 +4,8 @@ import moment from 'moment';
 import PropTypes from 'prop-types'
 import {userManager} from "../../../../_actions/userManager";
 import { connect } from 'react-redux';
-import 'react-datepicker/dist/react-datepicker.css';
+// import 'react-datepicker/dist/react-datepicker.css';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 class Calendar extends React.Component {
  

@@ -1,19 +1,16 @@
-const validate = values => {
-    const errors = {}
-    if (!values.firstName) {
-      errors.firstName = 'Required'
-    }
-    if (!values.date) {
-      // errors.date = 'Required'
-    }
-    if (!values.specialist) {
-        errors.specialist = 'Required'
-    }
-    if (!values.phone) {
-        errors.phone = 'Required'
-    }
-    
-    return errors
-  }
+export const validate = {
+  required,
+  maxLength,
+  number,
+  minValue,
+  minValue18
+}
 
-  export default validate;
+const required = value => value ? undefined : 'Required'
+const maxLength = max => value =>
+  value && value.length > max ? `Must be ${max} characters or less` : undefined
+const maxLength15 = maxLength(15)
+const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
+const minValue = min => value =>
+  value && value < min ? `Must be at least ${min}` : undefined
+const minValue18 = minValue(18)

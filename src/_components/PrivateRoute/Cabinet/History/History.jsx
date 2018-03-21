@@ -56,19 +56,20 @@ class History extends React.Component {
                                         </tfoot>
                                         <tbody>
                                             {
-                                            history
-                                                .filter(booking => {
-                                                    return moment(this.convertToTimeObj(booking)).isBefore(moment());})
-                                                .map(booking => {
-                                                    return (
-                                                        <tr>
-                                                        <td>{booking.id}</td>
-                                                        <td>{booking.firstName}</td>
-                                                        <td>{booking.date.time}</td>
-                                                        <td>{booking.date.date}</td>
-                                                        <td>{booking.specialist}</td>
-                                                    </tr>    
-                                                    )
+                                                history
+                                                    .filter(booking => {
+                                                        return moment(this.convertToTimeObj(booking)).isBefore(moment());
+                                                    })
+                                                    .map(booking => {
+                                                        return (
+                                                            <tr>
+                                                                <td>{booking.id}</td>
+                                                                <td>{booking.firstName}</td>
+                                                                <td>{booking.date.time}</td>
+                                                                <td>{booking.date.date}</td>
+                                                                <td>{booking.specialist}</td>
+                                                            </tr>
+                                                        )
                                                     })
                                             }
                                         </tbody>
