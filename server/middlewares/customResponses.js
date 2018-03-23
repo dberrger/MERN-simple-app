@@ -6,6 +6,13 @@ const customResponses = {
         } );
     },
 
+    failure( payload ) {
+        return this.status(200).json({
+            ok: false,
+            payload
+        })
+    },
+
     unauthorized( ) {
         return this.status( 401 ).json( {
             ok: false,
@@ -35,14 +42,14 @@ const customResponses = {
     },
     notFound( ) {
         return this.status( 404 ).json( {
-            success: false,
+            ok: false,
             error: "not_found",
         } );
     },
 
     serverError( ) {
         return this.status( 503 ).json( {
-            success: false,
+            ok: false,
             error: "server_error",
         } );
     },

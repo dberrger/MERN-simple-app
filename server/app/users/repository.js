@@ -9,10 +9,15 @@ const saveUser = ( data ) => {
 
 const deleteUser = ( user ) => user.remove();
 
-const findUser = ( id ) => User.findOne( { id } );
+const findUserById = ( id ) =>  (User.findOne({ '_id': id },"username lastName firstName email"));
+
+
+const findUserByData = (data) => (User.findOne({username: data.username}));
+
 
 module.exports = {
     saveUser,
     deleteUser,
-    findUser,
+    findUserById,
+    findUserByData
 };

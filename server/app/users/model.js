@@ -10,7 +10,7 @@ const userSchema = new Schema( {
     lastName: { type: String, required: true },
     password: { type: String, required: true },
     email: { type: String, required: true},
-    history: { type: Array, required: true },
+    history: [ {type: Schema.ObjectId, ref: 'Booking', required: true} ],
 }, {collection: "users"});
 
 // userSchema.methods.setPass = function( password ) {

@@ -1,33 +1,67 @@
 // const logger = require( "../../utilities/logger" );
 const mongoose = require('mongoose');
 const repository = require("./repository");
+const jwt = require("jsonwebtoken");
 
 
 const User = mongoose.model("User");
 
 exports.register = (req, res) => {
-    console.log("HELLO FROM CONTROLLER")
-    console.log(req.body.username)
+    console.log(req.body)
     User.findOne({
         'username': req.body.username
-    }, 'firstName', function (err, person) {
-        console.log(person);
+    }, 'username', function (err, person) {
 
         if (err) return res.status(500);
         if (person === null) {
-            console.log("USER HAVE NOT BEEN FOUND => IT WILL BE ADDED TO DB")
             repository.saveUser(req.body)
                 .then(savedUser => {
-                    console.log("ASJDKL")
-                    res.status(200).send({
-                        ok: true
-                    });
+                    res.success("Registration successful");
                 });
         } else {
-            res.status(200).send({
-                ok: false
-            });
+            res.failure("user already exist!");
         }
     });
 
+};
+
+exports.authenticate = (req, res) => {
+    if (!req.body.password || !req.body.username) {
+        res.failure("Password || Username required")
+        return;
+    }
+
+    repository.findUserByData(req.body).then(
+        user => {
+            console.log(user)
+            if (!user && user.password !== req.body.password) {
+                res.failure("Authentification failed");
+                return;
+            }
+
+            const token = jwt.sign({
+                id: user._id,
+                username: user.username
+            }, 'shhhhh');
+            console.log(`Authentication successful! Token: ${token}`);
+
+            res.success(token);
+        },
+        err => {
+            res.failure(err);
+        }
+    )
+}
+
+
+exports.profile = (req, res) => {
+
+    console.log(req.decodedUser);
+    repository.findUserById(req.decodedUser.id).then(
+        user => {
+            delete user._id;
+            res.success(user);
+        }
+    );
+    
 };

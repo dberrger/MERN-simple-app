@@ -25,7 +25,8 @@ function login(username, password) {
                         user => {
                             console.log(user)
                             user.isLogged = true;
-                            localStorage.setItem('user', JSON.stringify(user));
+                            
+                            localStorage.setItem('user', JSON.stringify({ isLogged: user.ok, token: user.payload }));
                             dispatch(userActions.loginSuccess(user));
                             dispatch(alertActions.success("AUTHENTICATION SUCCESSFUL!"));
                             history.push('/');
@@ -76,6 +77,7 @@ function getProfileData() {
                     .then(
                         success => {
                             console.log("Data has taken successfully!");
+                            success = success.payload;
                             dispatch(userActions.getProfileDataSuccess(success));
                             dispatch(alertActions.success("FETCHED DATA SUCCESSFUL!"));
                         },

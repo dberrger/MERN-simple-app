@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+
 //configure backend (localStorage)
 let usersDB = JSON.parse(localStorage.getItem('usersDB')) || [];
 import moment from "moment";
@@ -78,19 +79,6 @@ export function initBackend() {
                     return;
                 }
 
-
-                // if(url.match(/\/booking$/) && options.method === 'GET') {
-
-                //     let token = options.headers.Authorization;
-                //     let validUser = checkToken(token);
-
-                //     if(options.headers && validUser[0]) {
-                //         epmtyBookings = epmtyBookings();
-                        
-
-                //     }
-
-                // }
                 
                 if(url.match(/\/profile$/) && options.method === 'GET') {
 

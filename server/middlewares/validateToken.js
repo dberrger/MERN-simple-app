@@ -1,20 +1,15 @@
 const jwt = require( "jsonwebtoken" );
 
 module.exports = function( req, res, next ) {
-    const token = req.body.token || req.query.token || req.headers[ "x-access-token" ];
-
+    const token = req.body.token || req.query.token || req.headers.authorization;
+    console.log(token);
+    console.log(req.body);
     if ( token ) {
-        return jwt.verify( token, SECRET, function( err, decoded ) {
-            if ( err ) {
-                logger.error( err );
-                return res.json( {
-                    success: false,
-                    message: "Failed to authenticate token.",
-                } );
-            }
-            req.user = decoded;
-            return next( );
+        return jwt.verify( token, 'shhhhh', (err, decoded) => {
+            if (err) return res.failure("Invalid token.");
+            req.decodedUser = decoded;
+            return next();
         } );
     }
-    return res.unauthorized( );
+    return res.unauthorized();
 };
