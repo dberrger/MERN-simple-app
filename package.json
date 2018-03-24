@@ -1,14 +1,14 @@
 {
   "name": "react-hot-boilerplate",
   "version": "1.0.0",
-  "description": "Boilerplate for ReactJS project with hot code reloading",
+  "description": "MERN simple app",
   "scripts": {
-    "start": "node server.js",
-    "lint": "eslint src"
+    "webpack": "webpack",
+    "start": "npm run webpack && nodemon bin/www "
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gaearon/react-hot-boilerplate.git"
+    "url": "https://github.com/dberrger/ReactReduxSPA"
   },
   "keywords": [
     "react",
@@ -21,12 +21,8 @@
     "edit",
     "webpack"
   ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
+  "author": "dberrger",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gaearon/react-hot-boilerplate/issues"
-  },
-  "homepage": "https://github.com/gaearon/react-hot-boilerplate",
   "devDependencies": {
     "babel-core": "^6.0.20",
     "babel-eslint": "^4.1.3",
@@ -38,7 +34,7 @@
     "eslint-plugin-react": "^3.6.2",
     "express": "^4.13.4",
     "file-loader": "^1.1.11",
-    "image-webpack-loader": "^4.1.0",
+    "image-webpack-loader": "^4.2.0",
     "react-hot-loader": "^3.0.0-beta.7",
     "url-loader": "^1.0.1",
     "webpack": "^1.12.2",
@@ -46,13 +42,21 @@
     "webpack-hot-middleware": "^2.10.0"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "css-loader": "^0.28.10",
+    "express": "^4.16.3",
+    "express-history-api-fallback": "^2.2.1",
     "file-loader": "^1.1.11",
     "font-awesome": "^4.7.0",
     "font-awesome-sass-loader": "^2.0.1",
+    "foreman": "^2.0.0",
     "jose-jwe-jws": "^0.1.6",
     "jsonwebtoken": "^8.2.0",
+    "marked": "^0.3.17",
     "moment": "^2.21.0",
+    "mongodb": "^3.0.4",
+    "mongoose": "^5.0.11",
+    "nodemon": "^1.17.2",
     "react": "^0.14.6",
     "react-bootstrap": "^0.32.1",
     "react-datepicker": "^1.2.2",

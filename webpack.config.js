@@ -5,10 +5,10 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './src/index'
+    './client/index'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'client'),
     filename: 'bundle.js',
     publicPath: '/static/'
   },
@@ -23,15 +23,38 @@ module.exports = {
       {
       test: /(\.js|\.jsx)$/,
       loaders: ['react-hot-loader/webpack', 'babel'],
-      include: path.join(__dirname, 'src')
+      include: path.join(__dirname, '/client')
     },
      {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
-          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          'file-loader?context=src/images&name=images/[path][name].[ext]',
           'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
         ]
       },
+      // {
+      //   test: /\.(jpe?g|png|gif|svg)$/i,
+      //   loaders: ['file-loader?context=src/images&name=images/[path][name].[ext]', {
+      //     loader: 'image-webpack-loader',
+      //     query: {
+      //       mozjpeg: {
+      //         progressive: true,
+      //       },
+      //       gifsicle: {
+      //         interlaced: false,
+      //       },
+      //       optipng: {
+      //         optimizationLevel: 4,
+      //       },
+      //       pngquant: {
+      //         quality: '75-90',
+      //         speed: 3,
+      //       },
+      //     },
+      //   }],
+      //   exclude: /node_modules/,
+      //   include: __dirname,
+      // },
       {
         test: /\.css$/,
         loader: 'style!css'
