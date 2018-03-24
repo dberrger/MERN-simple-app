@@ -243,14 +243,6 @@ function compare(elem) {
     let timeH = moment(elem,['HH:mm a']).hours();
     let timeM = moment(elem,['HH:mm a']).minutes();
     if  (timeH === 0) timeH = 12;
-    // let res = moment().hour() >= timeH ? true :
-    // moment().minute() >= timeM ? false : true;
-    // if(moment().hour() > timeH) return false;
-    // if(moment().hour() === timeH) 
-    // {
-    //     if(moment().minutes() > timeM) return false; 
-    // } 
-  // return true;
     return moment().hour() > timeH ? false :
         moment().hour() === timeH && moment().minutes() > timeM ? false : true
   }

@@ -9,16 +9,7 @@ const userSchema = new Schema( {
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     password: { type: String, required: true },
-    email: { type: String, required: true},
-    history: [ {type: Schema.ObjectId, ref: 'Booking', required: true} ],
+    email: { type: String, required: true}
 }, {collection: "users"});
-
-// userSchema.methods.setPass = function( password ) {
-//     this.password = md5( password );
-// };
-
-// userSchema.methods.checkPass = function( password ) {
-//     return this.password === md5( password );
-// };
 
 module.exports = mongoose.model( "User", userSchema );

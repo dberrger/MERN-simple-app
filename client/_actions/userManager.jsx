@@ -138,6 +138,7 @@ function avaliableTimes(date) {
         userService.avaliableTimes(date)
                     .then(
                         success => {
+                            success = success.payload;
                             console.log(`Times fetched! ${success}`);
                             dispatch(userActions.avaliableTimesSuccess(success));
                             dispatch(alertActions.success("Times fetched SUCCESSFUL!"));
@@ -157,7 +158,7 @@ function getHistory() {
         userService.getHistory()
                     .then(
                         success => {
-                            
+                            success = success.payload.history;
                             console.log(`History fetched! ${success}`);
                             dispatch(userActions.getHistorySuccess(success));
                             dispatch(alertActions.success("History fetched SUCCESSFUL!"));

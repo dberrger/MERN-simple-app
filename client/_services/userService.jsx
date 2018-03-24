@@ -37,7 +37,7 @@ function register(user) {
 }
 
 function logout() {
-    console.log("LOt")
+    console.log("Logout")
     localStorage.removeItem('user');
     return false
 }
@@ -47,9 +47,19 @@ function getHistory() {
         method: 'GET',
         headers: authHeader()
     }
-    return fetch('/history', requestOptions)
-        .then(response => (handleResponse(response)))
-        .catch(err => { console.log(`unexpected error GETHISTORY : ${err}`) })
+    return fetch('http://localhost:3000/booking/history', requestOptions)
+                .then(response => 
+                    { 
+                        return response.json(); 
+                    },
+                    err => {
+                        return "Error";
+                    }
+                )
+                .then(res => {
+                    console.log(res);
+                    return handleResponse(res)
+                })
 }
 
 function addBooking(data) {
@@ -59,8 +69,6 @@ function addBooking(data) {
         headers: {'Authorization': JSON.parse(localStorage.getItem('user')).token , 'Content-Type': 'application/json'},
         body: JSON.stringify(data)
     }
-    console.log(data);
-    data.date.time = "11:30 am";
     return fetch('/booking', requestOptions)
             .then(response => { return response.json(); })
             .then(res => {
@@ -72,11 +80,16 @@ function addBooking(data) {
 function deleteBooking(id) {
     const requestOptions = {
         method: 'DELETE',
-        headers: authHeader(),
-        body: JSON.stringify(id)
+        headers:{'Authorization': JSON.parse(localStorage.getItem('user')).token , 'Content-Type': 'application/json'},
+        body: JSON.stringify({id})
     }
-    return fetch('/delete', requestOptions)
-        .then(response => (handleResponse(response)))
+    console.log(id)
+    return fetch('http://localhost:3000/booking', requestOptions)
+                .then(response => { return response.json(); })
+                .then(res => {
+                    console.log(res);   
+                    return handleResponse(res)
+                })
 }
 
 
@@ -98,11 +111,22 @@ function avaliableTimes(date) {
 
     const requestOptions = {
         method: 'POST',
-        headers: authHeader(),
+        headers: {'Authorization': JSON.parse(localStorage.getItem('user')).token , 'Content-Type': 'application/json'},
         body: JSON.stringify(date)
     }
-    return fetch('/times', requestOptions)
-        .then(response => (handleResponse(response)))
+    return fetch('http://localhost:3000/booking/times', requestOptions)
+                .then(response => 
+                    { 
+                        return response.json(); 
+                    },
+                    err => {
+                        return "Error";
+                    }
+                )
+                .then(res => {
+                    console.log(res);
+                    return handleResponse(res)
+                })
 }
 
 function handleResponse(response) {

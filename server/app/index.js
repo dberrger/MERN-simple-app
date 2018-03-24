@@ -4,5 +4,5 @@ const bookingsRouter = require('./bookings/router');
 
 module.exports = ( app ) => {
     app.use( "/", usersRouter);
-    // app.use( "/booking", validateToken, bookingsRouter);
+    app.use( "/booking", validateToken, bookingsRouter);
 };

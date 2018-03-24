@@ -56,7 +56,6 @@ exports.authenticate = (req, res) => {
 
 exports.profile = (req, res) => {
 
-    console.log(req.decodedUser);
     repository.findUserById(req.decodedUser.id).then(
         user => {
             delete user._id;

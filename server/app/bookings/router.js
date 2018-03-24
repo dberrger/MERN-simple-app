@@ -3,13 +3,15 @@ const controller = require( "./controller" );
 const express = require( "express" );
 const router = express.Router();
 
-
+router.delete( "/",  controller.delete);
 router.post( "/",  controller.create);
 
-// router.delete( "/booking",  controller.qwe);
 
-// router.get("/history", controller.history);
 
-// router.post("/times", controller.history);
+router.get("/history", controller.history);
+
+
+//THAT IS A BAD PRACTICE I KNOW! JUST TEMPORARY SOLUTION
+ router.post("/times", controller.times);
 
 module.exports = router;

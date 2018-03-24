@@ -8,7 +8,7 @@ const TableData = ({booking, removeItem}) => (
                             <td>{booking.date.time}</td>
                             <td>{booking.date.date}</td>
                             <td>{booking.specialist}</td>
-                            <td className="text-danger" onClick={() => (removeItem(booking.id))}>DELETE</td>
+                            <td className="text-danger" onClick={() => (removeItem(booking._id))}>DELETE</td>
                         </tr>
 
 );

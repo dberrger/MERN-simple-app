@@ -13,6 +13,7 @@ const bookingSchema = new Schema( {
             time: {type: String, required: false},
             years: {type: Number, required: false}
             },
+    ownerId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true}
 });
 
 module.exports = mongoose.model( "Booking", bookingSchema );
