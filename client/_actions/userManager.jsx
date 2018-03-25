@@ -98,10 +98,12 @@ function addBooking(data) {
                     .then(
                         success => {
                             console.log(`New Booking added! ${data}`);
+                            dispatch(userActions.addSuccess());
                             dispatch(alertActions.success("ADDED DATA (BOOKING) SUCCESSFUL!"));
-                            // history.push('/cabinet');
+                            history.push('/cabinet');
                         },
                         error => {
+                            // dispatch(userActions.addFailure(error));
                             dispatch(alertActions.error(error));
                         }
                     );

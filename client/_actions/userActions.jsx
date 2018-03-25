@@ -4,7 +4,7 @@ export const userActions  = {
     registerRequest, registerSuccess, registerFailure,
     loginRequest, loginSuccess, loginFailure,
     getHistoryRequest, getHistorySuccess, getHistoryFailure,
-    addRequest,
+    addRequest, addSuccess, addFailure,
     deleteRequest, deleteSuccess, deleteFailure,
     getProfileDataRequest, getProfileDataSuccess, getProfileDataFailure,
     avaliableTimesRequest, avaliableTimesSuccess, avaliableTimesFailure,
@@ -59,6 +59,13 @@ function addRequest() {
     return { type: userConstants.ADD_BOOKING_REQUEST }
 }
 
+function addSuccess() {
+    return { type: userConstants.ADD_BOOKING_SUCCESS }
+}
+
+function addFailure(user) {
+    return { type: userConstants.ADD_BOOKING_FAILURE, user }
+}
 
 /** delete */
 

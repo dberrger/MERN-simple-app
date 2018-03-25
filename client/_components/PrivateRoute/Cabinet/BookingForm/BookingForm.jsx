@@ -49,6 +49,8 @@ class AsyncValidationForm extends React.Component {
         delete  values.date.seconds;
       
       userManager.addBooking(values)(dispatch);
+      // BAD! REWRITE
+      dispatch({type: 'SETFALSE'});
 
     })}>
         
@@ -64,7 +66,7 @@ class AsyncValidationForm extends React.Component {
             component={renderDropdownList}
             data={this.props.avaliableTimes}
             valueField="value"
-            disabled={ this.props.isFetched && this.props.fetched ? false : true }
+            disabled={ this.props.isFetched? false : true }
             textField="color"/>
        </div>
        <div>
@@ -89,8 +91,7 @@ class AsyncValidationForm extends React.Component {
 
 AsyncValidationForm = connect((state)=> ({
   avaliableTimes: state.avaliableTimesReducer.avaliableTimes,
-  isFetched: state.avaliableTimesReducer.fetched,
-  fetched: state.bookingReducer.fetched
+  isFetched: state.avaliableTimesReducer.fetched
 }),
   null
 )(AsyncValidationForm);

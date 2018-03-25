@@ -10,7 +10,9 @@ export function avaliableTimesReducer(state = { avaliableTimes: []}, action)  {
 
         case userConstants.GET_AVALIABLE_TIMES_FAILURE:
             return Object.assign({}, state, {  error: action.message, fetched: false });
-            
+        
+        case 'SETFALSE':
+            return Object.assign({}, state, {  error: action.message, fetched: false });
         default: return state;
 
     }

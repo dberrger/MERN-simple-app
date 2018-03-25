@@ -24,11 +24,6 @@ export default class App extends Component {
         // this.isLogged = this.isLogged.bind(this);    
     }
     
-    // isLogged() {
-    //     //bad (temporary)
-    //     localStorage.user.isLogged ? dispatch(userActions.setLogged()) : null
-    // }
-
 render() {
     return (
         <div>
