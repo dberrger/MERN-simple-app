@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import Profile from "../Profile";
+import Profile from "../Profile.jsx";
 import { connect } from 'react-redux'
 import { userManager } from '../../../../_actions/userManager';
 import moment from 'moment';
@@ -33,7 +33,7 @@ class Upcoming extends React.Component {
         const { dispatch, history } = this.props;
         const tableHF =
             <tr>
-                {/* <th>id</th> */}
+                <th>id</th>
                 <th>firstName</th>
                 <th>Time</th>
                 <th>Date</th>

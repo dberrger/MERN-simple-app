@@ -2,13 +2,13 @@
 import React, { Component } from 'react';
 import Redux from 'redux';
 import { connect } from 'react-redux';
-import { history } from "../_helpers/history";
-import _components   from "../_components/index";
+import { history } from "../_backend/history.jsx";
+import _components   from "../_components/index.js";
 
 import {BrowserRouter,Route,Link,withRouter,Switch} from 'react-router-dom';
 
-import Header from "../_components/Header";
-import Home from "../_components/Home";
+import Header from "../_components/Header.jsx";
+import Home from "../_components/Home.jsx";
 
  import '../styles/css/style.css';
  import '../styles/css/bootstrap.css';

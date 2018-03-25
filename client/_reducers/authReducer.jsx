@@ -1,4 +1,4 @@
-import { userConstants } from "../_constants/user-constants";
+import { userConstants } from "../_constants/user-constants.jsx";
 
 export function authReducer (state = {isLogged: localStorage.user ? true : false }, action)  {
     switch (action.type) {

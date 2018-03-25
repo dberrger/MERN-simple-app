@@ -1,4 +1,4 @@
-import { userConstants } from "../_constants/user-constants";
+import { userConstants } from "../_constants/user-constants.jsx";
 
 export function deleteReducer(state = { deleting: true }, action)  {
     switch (action.type) {

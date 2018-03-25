@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App/App';
+import App from './App/App.jsx';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import { initBackend } from "./_helpers/backend";
-import { store } from "./_helpers/redux-store";
+import { initBackend } from "./_backend/backend.jsx";
+import { store } from "./_backend/redux-store.jsx";
 import {BrowserRouter, Route} from 'react-router-dom';
-import { history } from "./_helpers/history";
+import { history } from "./_backend/history";
 import { Router } from 'react-router';
 
 

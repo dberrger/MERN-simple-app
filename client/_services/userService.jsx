@@ -1,4 +1,4 @@
-import authHeader from "./authHeader";
+import authHeader from "./authHeader.jsx";
 
 export const userService = {
     login, register, logout,

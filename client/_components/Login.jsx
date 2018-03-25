@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { userManager } from '../_actions/userManager';
+import { userManager } from '../_actions/userManager.jsx';
 
 class Login extends React.Component {
     constructor(props) {
