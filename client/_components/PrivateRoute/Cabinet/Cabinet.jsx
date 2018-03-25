@@ -18,9 +18,9 @@ class Cabinet extends React.Component {
       
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <a href="index.html">This is your own cabinet where you can add</a>
+                <a href="index.html">Status: </a>
               </li>
-              <li className="breadcrumb-item active">delete bookings or look on previous history</li>
+              <li className="breadcrumb-item active">{ this.props.result ? this.props.result : "none"}</li>
             </ol> 
       
             <div className="row">
@@ -35,7 +35,7 @@ class Cabinet extends React.Component {
               </div>
               <div className="col-lg-9 mb-4">
                 <h2>Some text #1</h2>
-                <p>{ this.props.result ? this.props.result : "Some text #2"}</p>
+                <p>Some text #2</p>
                     <Route exact path="/cabinet" component={_components.Profile}/>
                     <Route exact path="/cabinet/add" component={_components.BookingForm}/>
                     <Route path="/cabinet/upcoming" component={_components.Upcoming}/>

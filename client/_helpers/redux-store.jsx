@@ -5,7 +5,6 @@ import { profileReducer } from '../_reducers/profileReducer.jsx';
 import { avaliableTimesReducer } from '../_reducers/avaliableTimesReducer';
 import { authReducer } from '../_reducers/authReducer';
 import { historyReducer } from '../_reducers/historyReducer';
-import { bookingReducer } from '../_reducers/bookingReducer';
 
 import { routerReducer } from "react-router-redux";
 import { combineReducers } from 'redux';
@@ -16,7 +15,6 @@ const logger = createLogger();
 
 export const store = createStore(
     combineReducers({
-        bookingReducer,
         authReducer,
     historyReducer,
     avaliableTimesReducer,
