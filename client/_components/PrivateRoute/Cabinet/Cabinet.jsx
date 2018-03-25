@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Link, Switch} from 'react-router-dom';
 import { Profile } from "./Profile";
-import _components   from "../../index.js";
+import _components   from "../../index";
 import { connect } from 'react-redux';
 
 class Cabinet extends React.Component {
@@ -13,14 +13,14 @@ class Cabinet extends React.Component {
         return (
             <div className="container">
             <h1 className="mt-4 mb-3">My cabinet
-              <small> Subheading</small>
+              {/* <small> Subheading</small> */}
             </h1>
       
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <a href="index.html">Home</a>
+                <a href="index.html">Status: </a>
               </li>
-              <li className="breadcrumb-item active">About</li>
+              <li className="breadcrumb-item active">{ this.props.result ? this.props.result : "none"}</li>
             </ol> 
       
             <div className="row">
@@ -34,8 +34,8 @@ class Cabinet extends React.Component {
                 </div>
               </div>
               <div className="col-lg-9 mb-4">
-                <h2>Section Heading</h2>
-                <p>Some text</p>
+                <h2>Some text #1</h2>
+                <p>Some text #2</p>
                     <Route exact path="/cabinet" component={_components.Profile}/>
                     <Route exact path="/cabinet/add" component={_components.BookingForm}/>
                     <Route path="/cabinet/upcoming" component={_components.Upcoming}/>
@@ -52,7 +52,8 @@ function mapStateToProps(state) {
 console.log(state);
 return {
     user: state.profileReducer.userProfileData,
-    isLoading: state.profileReducer.userProfileDataLoading
+    isLoading: state.profileReducer.userProfileDataLoading,
+    result: state.rootReducer.result
 }
 }
 

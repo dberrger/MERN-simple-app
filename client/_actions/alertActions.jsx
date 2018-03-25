@@ -1,4 +1,4 @@
-import { alertConstants } from "../_constants/alert-constants.jsx";
+import { alertConstants } from "../_constants/alert-constants";
 
 export const alertActions = {
     success, error, clear

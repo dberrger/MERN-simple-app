@@ -1,4 +1,4 @@
-import { userConstants } from "../_constants/user-constants.jsx";
+import { userConstants } from "../_constants/user-constants";
 
 export const userActions  = {
     registerRequest, registerSuccess, registerFailure,
@@ -55,12 +55,12 @@ function loginFailure(message) {
 
 /** add */
 
-function addRequest(user) {
-    return { type: userConstants.ADD_BOOKING_REQUEST, user }
+function addRequest() {
+    return { type: userConstants.ADD_BOOKING_REQUEST }
 }
 
-function addSuccess(user) {
-    return { type: userConstants.ADD_BOOKING_SUCCESS, user }
+function addSuccess() {
+    return { type: userConstants.ADD_BOOKING_SUCCESS }
 }
 
 function addFailure(user) {

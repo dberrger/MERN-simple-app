@@ -1,18 +1,18 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import { userManager } from "../_actions/userManager.jsx";
+import { userManager } from "../_actions/userManager";
 
 class Register extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             user: {
-                firstName: '1',
-                lastName: '1',
-                username: '1',
-                password: '1',
-                email: '1'
+                firstName: '',
+                lastName: '',
+                username: '',
+                password: '',
+                email: ''
             },
             submitted: false
         };

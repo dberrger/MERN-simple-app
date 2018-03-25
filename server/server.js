@@ -11,8 +11,6 @@ const customResponses = require( "./middlewares/customResponses" );
 const  app = express();
 const  compiler = webpack(config);
 
-const router = require('./routes/routes');
-
 app.use(bodyParser.json());
 app.use(customResponses);
 
@@ -25,9 +23,6 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-
-
-// app.use('/', router);
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '../client/index.html'));
