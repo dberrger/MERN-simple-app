@@ -1,4 +1,4 @@
-import { userConstants } from "../_constants/user-constants.jsx";
+import { userConstants } from "../_constants/user-constants";
 
 export function historyReducer(state = { historyLoading: true }, action)  {
     switch (action.type) {

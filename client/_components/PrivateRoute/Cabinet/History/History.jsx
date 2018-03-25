@@ -32,7 +32,7 @@ class History extends React.Component {
         const { dispatch, history } = this.props;
         const tableHF =
             <tr>
-                <th>id</th>
+                {/* <th>id</th>  */}
                 <th>firstName</th>
                 <th>Time</th>
                 <th>Date</th>
@@ -63,7 +63,7 @@ class History extends React.Component {
                                                     .map(booking => {
                                                         return (
                                                             <tr>
-                                                                <td>{booking.id}</td>
+                                                                {/* <td>{booking.id}</td> */}
                                                                 <td>{booking.firstName}</td>
                                                                 <td>{booking.date.time}</td>
                                                                 <td>{booking.date.date}</td>

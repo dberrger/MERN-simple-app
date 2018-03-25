@@ -1,9 +1,9 @@
 import React from 'react';
-import { userService } from "../_services/userService.jsx";
-import { userActions } from "./userActions.jsx";
-import { alertActions } from "../_actions/alertActions.jsx";
+import { userService } from "../_services/userService";
+import { userActions } from "./userActions";
+import { alertActions } from "../_actions/alertActions";
 import { Redirect } from "react-router-dom";
-import { history } from "../_backend/history";
+import { history } from "../_helpers/history";
 
 export const userManager = {
     login,
@@ -98,11 +98,10 @@ function addBooking(data) {
                     .then(
                         success => {
                             console.log(`New Booking added! ${data}`);
-                            dispatch(userActions.addSuccess(success));
                             dispatch(alertActions.success("ADDED DATA (BOOKING) SUCCESSFUL!"));
+                            // history.push('/cabinet');
                         },
                         error => {
-                            dispatch(userActions.addFailure(error));
                             dispatch(alertActions.error(error));
                         }
                     );
