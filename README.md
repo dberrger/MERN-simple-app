@@ -5,9 +5,10 @@
 - React-Router
 ## Back-end:
 - Node.js
+- Express
 - MongoDB
-ORM for mongo : mongoose
-authentication: jsonwebtoken
+#### ORM for mongo : mongoose
+#### authentication: jsonwebtoken
 
 ## Tools:
 Webpack
@@ -18,6 +19,7 @@ Eslint
 1. Frond-end async/sync validation
 2. Stateful components => stateless
 3. Refactor code:
-  -Promise-then => async await (back-end)
-  -Split on smart&dumb components
-  -deploy on heroku
+    - Promise-then => async await (back-end)
+    - Split on smart&dumb components
+    - Empty tables
+    - deploy on heroku
