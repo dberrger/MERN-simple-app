@@ -51,7 +51,7 @@ class Register extends React.Component {
                 <div className="card card-register mx-auto mt-5">
                     <div className="card-header">Register an Account</div>
                     <div className="card-body">
-                    <h2>{this.props.result}</h2>
+                    {/* <h2>{this.props.result}</h2> */}
                     <form name="form" onSubmit={this.handleSubmit}>
                         <div className="form-group">
                         <div className="form-row">

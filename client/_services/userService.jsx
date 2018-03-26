@@ -47,7 +47,7 @@ function getHistory() {
         method: 'GET',
         headers: authHeader()
     }
-    return fetch('http://localhost:3000/booking/history', requestOptions)
+    return fetch('/booking/history', requestOptions)
                 .then(response => 
                     { 
                         return response.json(); 
@@ -84,7 +84,7 @@ function deleteBooking(id) {
         body: JSON.stringify({id})
     }
     console.log(id)
-    return fetch('http://localhost:3000/booking', requestOptions)
+    return fetch('/booking', requestOptions)
                 .then(response => { return response.json(); })
                 .then(res => {
                     console.log(res);   
@@ -114,7 +114,7 @@ function avaliableTimes(date) {
         headers: {'Authorization': JSON.parse(localStorage.getItem('user')).token , 'Content-Type': 'application/json'},
         body: JSON.stringify(date)
     }
-    return fetch('http://localhost:3000/booking/times', requestOptions)
+    return fetch('/booking/times', requestOptions)
                 .then(response => 
                     { 
                         return response.json(); 
