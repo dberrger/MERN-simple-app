@@ -22,11 +22,11 @@ class Header extends React.Component {
     return (
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container">
-          <Link className="navbar-brand" to="/">B-style</Link>
-          <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarResponsive">
+          <Link className="navbar-brand" to="/">Dentist-cl</Link>
+          {/* <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"> */}
+            {/* <span className="navbar-toggler-icon"></span>
+          </button> */}
+          <div  id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
                 <a className="nav-link">About</a>

@@ -32,6 +32,7 @@ function login(username, password) {
                             history.push('/');
                         },
                         error => {
+                            error = error.payload
                             dispatch(userActions.loginFailure(error));
                             dispatch(alertActions.error(error));
                         }

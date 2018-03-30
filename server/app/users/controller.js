@@ -26,7 +26,9 @@ exports.register = (req, res) => {
 };
 
 exports.authenticate = (req, res) => {
-    if (!req.body.password || !req.body.username) {
+    console.log(req.body.password);
+    console.log(req.body.username);
+    if ( !req.body.password || !req.body.username) {
         res.failure("Password || Username required")
         return;
     }
@@ -34,7 +36,7 @@ exports.authenticate = (req, res) => {
     repository.findUserByData(req.body).then(
         user => {
             console.log(user)
-            if (!user && user.password !== req.body.password) {
+            if (user === null || !user && user.password !== req.body.password) {
                 res.failure("Authentification failed");
                 return;
             }

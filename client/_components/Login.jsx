@@ -43,6 +43,7 @@ class Login extends React.Component {
         <div className="container ">
             <div className="card card-login mx-auto mt-5 md-5">
             <div className="card-header">Login</div>
+            <div className="card-header">Status: {this.props.result}</div>
             <div className="card-body">
                 <form name="form" onSubmit={this.handleSubmit}>
                 <div className="form-group">
@@ -56,10 +57,11 @@ class Login extends React.Component {
                     {submitted && !password &&  <div>Password is required</div>  }
                 </div>
                 <div className="form-group">
-                    <div className="form-check">
+                <br/>
+                    {/* <div className="form-check">
                     <label className="form-check-label">
-                        <input className="form-check-input" type="checkbox"/> Remember Password</label>
-                    </div>
+                        {/* <input className="form-check-input" type="checkbox"/> Remember Password</label> 
+                    </div> */}
                 </div>
                 {/* <a className="btn btn-primary btn-block" href="index.html">Login</a> */}
                 <button className="btn btn-primary btn-block">Login</button>
@@ -78,4 +80,6 @@ class Login extends React.Component {
 
  
 
-export default Login = connect(null)(Login);
+export default Login = connect(state => ({
+    result: state.rootReducer.result
+}))(Login);

@@ -13,14 +13,14 @@ class Home extends Component {
         </ol>
         <div className="carousel-inner" role="listbox">
            
-          <div className="carousel-item active" style={ {backgroundImage: 'url("http://placehold.it/1900x1080")'}}>
+          <div className="carousel-item active" style={ {backgroundImage: 'url("https://webaprod.com/wp-content/uploads/2017/01/Website-Design-Background_Torquay-1170x620.png")'}}>
             <div className="carousel-caption d-none d-md-block">
               <h3>First Slide</h3>
               <p>This is a description for the first slide.</p>
             </div>
           </div>
            
-          <div className="carousel-item" style={ {backgroundImage: 'url("http://placehold.it/1900x1080")'}}>
+          {/* <div className="carousel-item" style={ {backgroundImage: 'url("http://placehold.it/1900x1080")'}}>
             <div className="carousel-caption d-none d-md-block">
               <h3>Second Slide</h3>
               <p>This is a description for the second slide.</p>
@@ -32,7 +32,7 @@ class Home extends Component {
               <h3>Third Slide</h3>
               <p>This is a description for the third slide.</p>
             </div>
-          </div>
+          </div> */}
         </div>
         <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -47,52 +47,13 @@ class Home extends Component {
     <div className="container">
 
       <h1 className="my-4">Welcome to Modern Business</h1>
-
-       
-      <div className="row">
-        <div className="col-lg-4 mb-4">
-          <div className="card h-100">
-            <h4 className="card-header">Card Title</h4>
-            <div className="card-body">
-              <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div className="card-footer">
-              <a href="#" className="btn btn-primary">Learn More</a>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 mb-4">
-          <div className="card h-100">
-            <h4 className="card-header">Card Title</h4>
-            <div className="card-body">
-              <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
-            </div>
-            <div className="card-footer">
-              <a href="#" className="btn btn-primary">Learn More</a>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 mb-4">
-          <div className="card h-100">
-            <h4 className="card-header">Card Title</h4>
-            <div className="card-body">
-              <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-            </div>
-            <div className="card-footer">
-              <a href="#" className="btn btn-primary">Learn More</a>
-            </div>
-          </div>
-        </div>
-      </div>
-       
-
-       
+      
       <h2>Portfolio Heading</h2>
 
       <div className="row">
         <div className="col-lg-4 col-sm-6 portfolio-item">
           <div className="card h-100">
-            <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+            <a href="#"><img className="card-img-top" src="https://c7.dq1.me/uploads/article_block/27230/article_featured_image/50568/thumb_Woman_20at_20the_20dentist_s_20chair_20during_20a_20dental_20procedure_202.jpg" alt=""/></a>
             <div className="card-body">
               <h4 className="card-title">
                 <a href="#">Project One</a>
@@ -103,7 +64,7 @@ class Home extends Component {
         </div>
         <div className="col-lg-4 col-sm-6 portfolio-item">
           <div className="card h-100">
-            <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+            <a href="#"><img className="card-img-top" src="http://www.creeksidefamily.dental/wp-content/uploads/2016/06/Dentist-talking-to-patient-700x400.jpg" alt=""/></a>
             <div className="card-body">
               <h4 className="card-title">
                 <a href="#">Project Two</a>
@@ -114,7 +75,7 @@ class Home extends Component {
         </div>
         <div className="col-lg-4 col-sm-6 portfolio-item">
           <div className="card h-100">
-            <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+            <a href="#"><img className="card-img-top" src="https://c7.dq1.me/uploads/article_block/5381/article_featured_image/50188/thumb_Medical_20treatment_20at_20the_20dentist_20office_202.jpg" alt=""/></a>
             <div className="card-body">
               <h4 className="card-title">
                 <a href="#">Project Three</a>
@@ -125,7 +86,7 @@ class Home extends Component {
         </div>
         <div className="col-lg-4 col-sm-6 portfolio-item">
           <div className="card h-100">
-            <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+            <a href="#"><img className="card-img-top" src="http://www.tlcdental.biz/wp-content/uploads/2017/06/Depositphotos_133093136_original-1-700x400.jpg" alt=""/></a>
             <div className="card-body">
               <h4 className="card-title">
                 <a href="#">Project Four</a>
@@ -136,7 +97,7 @@ class Home extends Component {
         </div>
         <div className="col-lg-4 col-sm-6 portfolio-item">
           <div className="card h-100">
-            <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+            <a href="#"><img className="card-img-top" src="http://www.naperdent.com/images/people/naperville_dentist_8_700x400.jpg" alt=""/></a>
             <div className="card-body">
               <h4 className="card-title">
                 <a href="#">Project Five</a>
@@ -147,7 +108,7 @@ class Home extends Component {
         </div>
         <div className="col-lg-4 col-sm-6 portfolio-item">
           <div className="card h-100">
-            <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt=""/></a>
+            <a href="#"><img className="card-img-top" src="http://dentalnow14.com/wp-content/uploads/2016/01/Cirugia-oral-3.jpg" alt=""/></a>
             <div className="card-body">
               <h4 className="card-title">
                 <a href="#">Project Six</a>
@@ -176,7 +137,7 @@ class Home extends Component {
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
         </div>
         <div className="col-lg-6">
-          <img className="img-fluid rounded" src="http://placehold.it/700x450" alt=""/>
+          <img className="img-fluid rounded" src="http://www.mehtaeyeclinic.com/images/QV-FEMTO---main-700x450.jpg" alt=""/>
         </div>
       </div>
        
